@@ -1,0 +1,10 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "betterstorage:blocks/cardboardBox",
+		"north": "betterstorage:blocks/cardboardBox_side",
+		"south": "betterstorage:blocks/cardboardBox_side",
+		"east": "betterstorage:blocks/cardboardBox_side",
+		"west": "betterstorage:blocks/cardboardBox_side"
+	}
+}

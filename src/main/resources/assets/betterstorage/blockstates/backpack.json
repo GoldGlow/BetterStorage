@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north":
+            { "model": "betterstorage:backpack" },
+        "facing=east":
+            { "model": "betterstorage:backpack", "y": 90 },
+        "facing=south":
+            { "model": "betterstorage:backpack", "y": 180 },
+        "facing=west":
+            { "model": "betterstorage:backpack", "y": 270 }
+    }
+}

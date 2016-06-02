@@ -1,0 +1,16 @@
+{
+  "music.dialogTest": {
+    "category": "record",
+    "sounds": [ {
+        "name":"music/dTest",
+        "stream": true
+      } ]
+  },
+  "music.bgTest": {
+    "category": "music",
+    "sounds": [ {
+      "name":"music/bgTest",
+      "stream": true
+    } ]
+  }
+}
