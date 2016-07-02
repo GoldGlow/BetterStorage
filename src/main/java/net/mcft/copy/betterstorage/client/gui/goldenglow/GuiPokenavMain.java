@@ -1,5 +1,6 @@
 package net.mcft.copy.betterstorage.client.gui.goldenglow;
 
+import net.mcft.copy.betterstorage.BetterStorage;
 import net.mcft.copy.betterstorage.api.goldenglow.EnumPokenavButtonType;
 import net.mcft.copy.betterstorage.misc.BetterStorageResource;
 import net.minecraft.client.Minecraft;
@@ -43,12 +44,14 @@ public class GuiPokenavMain extends GuiScreen {
 
     public void initGui() {
         super.initGui();
+
         guiLeft = (this.width-xSize)/2;
         guiTop = (this.height-ySize)/2;
 
-        addButton(new GuiPokenavButton(0, this.width/2-11, guiTop+25, EnumPokenavButtonType.Follower));
-        addButton(new GuiPokenavButton(1, this.width / 2 - 32, guiTop + 48, EnumPokenavButtonType.Fly));
-        addButton(new GuiPokenavButton(2, this.width / 2 + 10, guiTop + 48, EnumPokenavButtonType.Matchup));
+        addButton(new GuiPokenavButton(0, this.width/2 - 32, guiTop + 48, EnumPokenavButtonType.Fly));
+        addButton(new GuiPokenavButton(1, this.width/2 - 11, guiTop + 25, EnumPokenavButtonType.Follower));
+        addButton(new GuiPokenavButton(2, this.width/2 + 10, guiTop + 48, EnumPokenavButtonType.Matchup));
+        addButton(new GuiPokenavButton(3, this.width/2 - 32, guiTop + 73, EnumPokenavButtonType.Costumes));
     }
 
     public void drawScreen(int mouseX, int mouseY, float ticks) {
@@ -114,13 +117,15 @@ public class GuiPokenavMain extends GuiScreen {
         }
         switch(button.id) {
             case 0:
+                Minecraft.getMinecraft().displayGuiScreen(new GuiPokenavFly(this.player));
                 break;
             case 1:
-
-                Minecraft.getMinecraft().displayGuiScreen(new GuiPokenavFly(this.player));
                 break;
             case 2:
                 Minecraft.getMinecraft().displayGuiScreen(new GuiPokenavMatchup(this.player));
+                break;
+            case 3:
+                Minecraft.getMinecraft().displayGuiScreen(new GuiCostume(this.player));
                 break;
         }
     }

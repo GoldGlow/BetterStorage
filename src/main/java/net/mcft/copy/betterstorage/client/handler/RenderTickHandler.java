@@ -9,6 +9,7 @@ public class RenderTickHandler {
     @SubscribeEvent
     public void renderLivingPre(RenderLivingEvent.Pre event) {
         if(event.entity instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer)event.entity;
 
         }
     }

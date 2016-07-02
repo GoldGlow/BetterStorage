@@ -40,11 +40,7 @@ public class StationCrafting {
 	/** Returns if the recipe can be crafted. Experience is checked automatically.
 	 * @param source Contains information of where this recipe is crafted and who crafts it. */
 	public boolean canCraft(ICraftingSource source) { return true; }
-	
-	/** Returns the requirements for crafting this recipe again.
-	 *  Called after {@link #canCraft} and before {@link #craft}. <br>
-	 *  After crafting, the crafting grid is filled with items from the
-	 *  crafting station's internal storage that match the requirements.  */
+
 	public IRecipeInput[] getCraftRequirements() { return requiredInput; }
 	
 	/** Called after the recipe is successfully crafted. Experience is removed automatically.

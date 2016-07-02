@@ -14,7 +14,6 @@ import net.mcft.copy.betterstorage.item.cardboard.ItemCardboardSheet;
 import net.mcft.copy.betterstorage.item.cardboard.ItemCardboardShovel;
 import net.mcft.copy.betterstorage.item.cardboard.ItemCardboardSword;
 import net.mcft.copy.betterstorage.item.goldenglow.ItemPokeNav;
-import net.mcft.copy.betterstorage.item.goldenglow.customisation.ItemCostume;
 import net.mcft.copy.betterstorage.item.locking.ItemKey;
 import net.mcft.copy.betterstorage.item.locking.ItemKeyring;
 import net.mcft.copy.betterstorage.item.locking.ItemLock;
@@ -49,10 +48,6 @@ public final class BetterStorageItems {
 
 	//GoldenGlow Stuff
 	public static ItemPokeNav pokeNav;
-
-	//Costumes
-	public static ItemCostume duskullMask;
-	public static ItemCostume keyblade;
 
 	public static boolean anyCardboardItemsEnabled;
 	
@@ -100,9 +95,6 @@ public final class BetterStorageItems {
 		//GoldenGlow Stuff
 		pokeNav		   = new ItemPokeNav();
 
-		//Costumes
-		duskullMask		   = new ItemCostume("duskullMask", 0, new ModelDuskullMask());
-		keyblade		   = new ItemCostume("keyblade", 0, new ModelKeyblade());
 	}
 	private static ItemCardboardArmor conditionalNewArmor(String configName, int armorType) {
 		if (!BetterStorage.globalConfig.getBoolean(configName)) return null;

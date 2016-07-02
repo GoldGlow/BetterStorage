@@ -1,6 +1,7 @@
 package net.mcft.copy.betterstorage.proxy;
 
 import net.mcft.copy.betterstorage.BetterStorage;
+import net.mcft.copy.betterstorage.api.goldenglow.CostumePiece;
 import net.mcft.copy.betterstorage.api.stand.BetterStorageArmorStand;
 import net.mcft.copy.betterstorage.api.stand.EnumArmorStandRegion;
 import net.mcft.copy.betterstorage.attachment.EnumAttachmentInteraction;
@@ -8,6 +9,7 @@ import net.mcft.copy.betterstorage.attachment.IHasAttachments;
 import net.mcft.copy.betterstorage.config.GlobalConfig;
 import net.mcft.copy.betterstorage.content.BetterStorageItems;
 import net.mcft.copy.betterstorage.content.BetterStorageTiles;
+import net.mcft.copy.betterstorage.content.Costumes;
 import net.mcft.copy.betterstorage.entity.EntityCluckington;
 import net.mcft.copy.betterstorage.item.ItemBackpack;
 import net.mcft.copy.betterstorage.item.ItemBucketSlime;
@@ -74,6 +76,7 @@ public class CommonProxy {
 			new ChristmasEventHandler();
 		
 		registerArmorStandHandlers();
+		Costumes.init();
 	}
 	
 	protected void registerArmorStandHandlers() {

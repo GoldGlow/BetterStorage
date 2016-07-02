@@ -45,6 +45,8 @@ dependencies {
     //compile name: "NotEnoughItems"    , group: "codechicken", version: nei_version, classifier: "dev"
     //compile name: "Thaumcraft"        , version: tc_version, classifier: "api", ext: "zip"
     //compile name: "Botania"           , group: "vazkii.botania", version: botania_version, classifier: "deobf"
+	
+	compile fileTree(dir: 'lib', include: '*.jar')
 }
 
 processResources {
@@ -83,4 +85,10 @@ artifacts {
     archives sourcesJar
     archives apiJar
     archives deobfJar
+}
+
+idea {
+    module {
+        inheritOutputDirs = true
+    }
 }

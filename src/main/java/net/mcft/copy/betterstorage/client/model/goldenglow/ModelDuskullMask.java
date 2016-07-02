@@ -1,12 +1,11 @@
 package net.mcft.copy.betterstorage.client.model.goldenglow;
 
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import org.lwjgl.opengl.GL11;
 
-public class ModelDuskullMask extends ModelBiped {
+public class ModelDuskullMask extends ModelCostume {
 
     public ModelRenderer shape1;
     public ModelRenderer shape2;
@@ -113,39 +112,29 @@ public class ModelDuskullMask extends ModelBiped {
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        setRotationAngles(f,f1,f2,f3,f4,f5, entity);
-        if(entity!=null && entity.isSneaking()) {
-                this.bipedBody.rotateAngleX = 0.5F;
-                this.bipedRightArm.rotateAngleX += 0.4F;
-                this.bipedLeftArm.rotateAngleX += 0.4F;
-                this.bipedRightLeg.rotationPointZ = 4.0F;
-                this.bipedLeftLeg.rotationPointZ = 4.0F;
-                this.bipedRightLeg.rotationPointY = 13.0F;
-                this.bipedLeftLeg.rotationPointY = 13.0F;
+        if(!entity.isInvisible()) {
+            setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+            if (entity != null && entity.isSneaking()) {
                 this.bipedHead.rotationPointY = 4.5F;
-
-                this.bipedBody.rotationPointY = 4.5F;
-                this.bipedRightArm.rotationPointY = 5.0F;
-                this.bipedLeftArm.rotationPointY = 5.0F;
-        }
-        if(entity!=null && entity instanceof EntityLivingBase) {
-            this.heldItemRight = ((EntityLivingBase) entity).getHeldItem() != null ? 1 : 0;
-            if (((EntityLivingBase)entity).isChild()) {
-                float f6 = 2.0F;
-                GL11.glPushMatrix();
-                GL11.glScalef(1.5F / f6, 1.5F / f6, 1.5F / f6);
-                GL11.glTranslatef(0.0F, 16.0F * f5, 0.0F);
-                this.bipedHead.render(f5);
-                GL11.glPopMatrix();
-            } else {
-                GL11.glPushMatrix();
-                GL11.glScalef(1.01F, 1.01F, 1.01F);
-                this.bipedHead.render(f5);
-                GL11.glPopMatrix();
             }
+            if (entity != null && entity instanceof EntityLivingBase) {
+                this.heldItemRight = ((EntityLivingBase) entity).getHeldItem() != null ? 1 : 0;
+                if (((EntityLivingBase) entity).isChild()) {
+                    float f6 = 2.0F;
+                    GL11.glPushMatrix();
+                    GL11.glScalef(1.5F / f6, 1.5F / f6, 1.5F / f6);
+                    GL11.glTranslatef(0.0F, 16.0F * f5, 0.0F);
+                    this.bipedHead.render(f5);
+                    GL11.glPopMatrix();
+                } else {
+                    GL11.glPushMatrix();
+                    GL11.glScalef(1.01F, 1.01F, 1.01F);
+                    this.bipedHead.render(f5);
+                    GL11.glPopMatrix();
+                }
+            }
+            //super.render(entity, f, f1, f2, f3, f4, f5);
         }
-        //super.render(entity, f, f1, f2, f3, f4, f5);
-
     }
 
     /**

@@ -1,29 +1,21 @@
 package net.mcft.copy.betterstorage.misc.handlers;
 
 import net.mcft.copy.betterstorage.BetterStorage;
-import net.mcft.copy.betterstorage.api.goldenglow.EnumSpecialBackpacks;
 import net.mcft.copy.betterstorage.config.GlobalConfig;
 import net.mcft.copy.betterstorage.item.ItemBackpack;
 import net.mcft.copy.betterstorage.misc.EquipmentSlot;
 import net.mcft.copy.betterstorage.network.packet.PacketBackpackOpen;
 import net.mcft.copy.betterstorage.network.packet.PacketDrinkingHelmetUse;
-import net.mcft.copy.betterstorage.network.packet.PacketHideBackpack;
-import net.mcft.copy.betterstorage.network.packet.PacketSetBackpackSpecial;
+import net.mcft.copy.betterstorage.network.packet.goldenglow.PacketHideBackpack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
-
-import org.lwjgl.input.Keyboard;
-
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 
 //@SideOnly(Side.CLIENT)
 public class KeyBindingHandler {

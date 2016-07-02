@@ -59,32 +59,34 @@ public class ModelBackpackArmor extends ModelBiped {
 	
 	@Override
 	public void render(Entity entity, float v1, float v2, float partialTicks, float v4, float v5, float v6) {
-		ItemStack stack = ItemBackpack.getBackpack((EntityLivingBase) entity);
-		if (stack.hasTagCompound()) {
-			NBTTagCompound tag = stack.getTagCompound();
-			if(tag.hasKey("isHidden") && tag.getBoolean("isHidden"))
-				return;
-			if (tag.hasKey("special") && tag.getInteger("special") > 0) {
-				int specialType = tag.getInteger("special");
-				if(specialType== EnumSpecialBackpacks.Rainbow.ordinal()) {
-					int i = entity.ticksExisted / 25 + entity.getEntityId();
-					int j = EnumDyeColor.values().length;
-					int k = i % j;
-					int l = (i + 1) % j;
-					float f = ((float) (entity.ticksExisted % 25)) / 25.0F;
-					float[] afloat1 = EntitySheep.func_175513_a(EnumDyeColor.byMetadata(k));
-					float[] afloat2 = EntitySheep.func_175513_a(EnumDyeColor.byMetadata(l));
-					GlStateManager.color(afloat1[0] * (1.0F - f) + afloat2[0] * f, afloat1[1] * (1.0F - f) + afloat2[1] * f, afloat1[2] * (1.0F - f) + afloat2[2] * f);
+		if(!entity.isInvisible()) {
+			ItemStack stack = ItemBackpack.getBackpack((EntityLivingBase) entity);
+			if (stack.hasTagCompound()) {
+				NBTTagCompound tag = stack.getTagCompound();
+				if (tag.hasKey("isHidden") && tag.getBoolean("isHidden"))
+					return;
+				if (tag.hasKey("special") && tag.getInteger("special") > 0) {
+					int specialType = tag.getInteger("special");
+					if (specialType == EnumSpecialBackpacks.Rainbow.ordinal()) {
+						int i = entity.ticksExisted / 25 + entity.getEntityId();
+						int j = EnumDyeColor.values().length;
+						int k = i % j;
+						int l = (i + 1) % j;
+						float f = ((float) (entity.ticksExisted % 25)) / 25.0F;
+						float[] afloat1 = EntitySheep.func_175513_a(EnumDyeColor.byMetadata(k));
+						float[] afloat2 = EntitySheep.func_175513_a(EnumDyeColor.byMetadata(l));
+						GlStateManager.color(afloat1[0] * (1.0F - f) + afloat2[0] * f, afloat1[1] * (1.0F - f) + afloat2[1] * f, afloat1[2] * (1.0F - f) + afloat2[2] * f);
+					}
 				}
 			}
+			setRotationAngles(v1, v2, partialTicks, v4, v5, v6, entity);
+			if (entity instanceof EntityFrienderman) {
+				float y = bipedBody.rotationPointY;
+				bipedBody.rotationPointY -= 18.0F;
+				bipedBody.render(1 / 20.0F);
+				bipedBody.rotationPointY = y;
+			} else bipedBody.render(1 / 20.0F);
 		}
-		setRotationAngles(v1, v2, partialTicks, v4, v5, v6, entity);
-		if (entity instanceof EntityFrienderman) {
-			float y = bipedBody.rotationPointY;
-			bipedBody.rotationPointY -= 18.0F;
-			bipedBody.render(1 / 20.0F);
-			bipedBody.rotationPointY = y;
-		} else bipedBody.render(1 / 20.0F);
 	}
 	
 	@Override

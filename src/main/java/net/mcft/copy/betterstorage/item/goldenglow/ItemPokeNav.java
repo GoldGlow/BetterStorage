@@ -1,10 +1,10 @@
 package net.mcft.copy.betterstorage.item.goldenglow;
 
-import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
-import com.pixelmonmod.pixelmon.entities.pixelmon.EnumSpecialTexture;
 import net.mcft.copy.betterstorage.BetterStorage;
 import net.mcft.copy.betterstorage.client.gui.goldenglow.GuiPokenavMain;
+import net.mcft.copy.betterstorage.content.Costumes;
 import net.mcft.copy.betterstorage.misc.Constants;
+import net.mcft.copy.betterstorage.misc.handlers.CostumeHandler;
 import net.mcft.copy.betterstorage.utils.MiscUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
@@ -39,9 +39,6 @@ public class ItemPokeNav extends Item {
 
     @Override
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target) {
-        if(target instanceof EntityPixelmon) {
-            ((EntityPixelmon) target).setSpecialTexture(EnumSpecialTexture.Online.id);
-        }
         return super.itemInteractionForEntity(stack, playerIn, target);
     }
 

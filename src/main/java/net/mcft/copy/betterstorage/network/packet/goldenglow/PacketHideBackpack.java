@@ -1,4 +1,4 @@
-package net.mcft.copy.betterstorage.network.packet;
+package net.mcft.copy.betterstorage.network.packet.goldenglow;
 
 import net.mcft.copy.betterstorage.item.ItemBackpack;
 import net.mcft.copy.betterstorage.network.AbstractPacket;
@@ -32,7 +32,6 @@ public class PacketHideBackpack extends AbstractPacket<PacketHideBackpack> {
                 else
                     visibility = !stack.getTagCompound().getBoolean("isHidden");
                 stack.getTagCompound().setBoolean("isHidden", visibility);
-                System.out.println(stack.getTagCompound().getBoolean("isHidden"));
             } else {
                 NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setBoolean("isHidden", true);

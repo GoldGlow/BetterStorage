@@ -1,23 +1,18 @@
 package net.mcft.copy.betterstorage.proxy;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.mcft.copy.betterstorage.BetterStorage;
 import net.mcft.copy.betterstorage.addon.Addon;
 import net.mcft.copy.betterstorage.api.stand.BetterStorageArmorStand;
 import net.mcft.copy.betterstorage.attachment.Attachment;
 import net.mcft.copy.betterstorage.attachment.Attachments;
 import net.mcft.copy.betterstorage.attachment.IHasAttachments;
-import net.mcft.copy.betterstorage.client.gui.GuiBetterStorage;
 import net.mcft.copy.betterstorage.client.handler.MusicHandler;
 import net.mcft.copy.betterstorage.client.model.ModelBackpackArmor;
 import net.mcft.copy.betterstorage.client.model.ModelCluckington;
 import net.mcft.copy.betterstorage.client.renderer.*;
-import net.mcft.copy.betterstorage.container.ContainerBetterStorage;
+import net.mcft.copy.betterstorage.content.Costumes;
 import net.mcft.copy.betterstorage.entity.EntityCluckington;
 import net.mcft.copy.betterstorage.entity.EntityFrienderman;
-import net.mcft.copy.betterstorage.inventory.InventoryBackpackEquipped;
 import net.mcft.copy.betterstorage.item.ItemBackpack;
 import net.mcft.copy.betterstorage.misc.Constants;
 import net.mcft.copy.betterstorage.misc.Resources;
@@ -35,31 +30,22 @@ import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.entity.RenderChicken;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.*;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
@@ -73,9 +59,6 @@ public class ClientProxy extends CommonProxy {
 	public static int lockableDoorRenderId;
 	public static int presentRenderId;
 	
-	public static final Map<Class<? extends TileEntity>, BetterStorageRenderingHandler> renderingHandlers =
-			new HashMap<Class<? extends TileEntity>, BetterStorageRenderingHandler>();
-	
 	@Override
 	public void initialize() {
 		
@@ -83,6 +66,11 @@ public class ClientProxy extends CommonProxy {
 		new KeyBindingHandler();
 		registerRenderers();
 		BetterStorage.musicHandler = new MusicHandler();
+
+		LayerCostume costumeLayer = new LayerCostume();
+		Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default").addLayer(costumeLayer);
+		Minecraft.getMinecraft().getRenderManager().getSkinMap().get("slim").addLayer(costumeLayer);
+		Costumes.registerModels();
 	}
 	
 	@Override

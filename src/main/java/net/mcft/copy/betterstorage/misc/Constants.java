@@ -27,7 +27,7 @@ public final class Constants {
 	public static final String lockableDoor = modId + ".lockableDoor";
 
 	public static final int guiBackpackID = 0;
-	
+
 	private Constants() {  }
 	
 }

@@ -1,4 +1,4 @@
-package net.mcft.copy.betterstorage.network.packet;
+package net.mcft.copy.betterstorage.network.packet.goldenglow;
 
 import net.mcft.copy.betterstorage.item.ItemBackpack;
 import net.mcft.copy.betterstorage.network.AbstractPacket;
