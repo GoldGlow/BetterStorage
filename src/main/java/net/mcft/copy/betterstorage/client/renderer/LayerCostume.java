@@ -3,9 +3,12 @@ package net.mcft.copy.betterstorage.client.renderer;
 import net.mcft.copy.betterstorage.api.goldenglow.CostumeData;
 import net.mcft.copy.betterstorage.misc.handlers.CostumeHandler;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
 
 public class LayerCostume implements LayerRenderer {
 

@@ -15,7 +15,9 @@ public enum EnumPokenavButtonType {
     Feet ("Feet", new int[] {48, 77}),
     Extra ("Extras", new int[] {64, 77}),
     Clear ("Clear Layer", new int[] {80, 77}),
-    Save ("Save", new int[] {0, 93});
+    Save ("Save & Close", new int[] {0, 93}),
+    Up ("Page Up", new int[] {16, 93}),
+    Down ("Page Down", new int[] {32, 93});
 
     public String tip;
     public int[] iconCoords;

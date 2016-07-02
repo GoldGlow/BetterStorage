@@ -37,7 +37,7 @@ public class GuiPokenavButton extends GuiButton {
 
     public void drawButton(Minecraft minecraft, int mouseX, int mouseY) {
         FontRenderer fontrenderer = minecraft.fontRendererObj;
-        if (this.visible)
+        if (this.visible && this.enabled)
         {
             minecraft.getTextureManager().bindTexture(buttonTextures);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

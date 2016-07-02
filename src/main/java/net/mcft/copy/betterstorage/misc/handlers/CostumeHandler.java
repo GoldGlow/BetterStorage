@@ -49,7 +49,6 @@ public class CostumeHandler {
 
     @SubscribeEvent
     public void onLoadPlayerFromFile(PlayerEvent.LoadFromFile event) {
-        System.out.println("Loading Costume Data for "+event.entityPlayer.getGameProfile().getName());
         CostumeData data = new CostumeData();
         NBTTagCompound nbtTagCompound = null;
         try {
@@ -68,7 +67,6 @@ public class CostumeHandler {
 
     @SubscribeEvent
     public void onSavePlayerToFile(PlayerEvent.SaveToFile event) {
-        System.out.println("Saving Costume Data for "+event.entityPlayer.getGameProfile().getName());
         try {
             File tempFile = event.getPlayerFile("gg.tmp");
             File file = event.getPlayerFile("gg");

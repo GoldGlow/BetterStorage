@@ -79,10 +79,6 @@ public class ModelKeyblade extends ModelCostume {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         if(!entity.isInvisible()) {
             setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-            if (entity != null && entity.isSneaking()) {
-                this.bipedBody.rotateAngleX = 0.5F;
-                this.bipedBody.rotationPointY = 4.5F;
-            }
             GlStateManager.pushMatrix();
             ItemStack backpack = ItemBackpack.getBackpack((EntityPlayer)entity);
             if(backpack == null || (backpack.getTagCompound().hasKey("isHidden") && backpack.getTagCompound().getBoolean("isHidden"))) {
@@ -92,6 +88,11 @@ public class ModelKeyblade extends ModelCostume {
             else {
                 GlStateManager.translate(-0.3f, 0.3f, 0.4f);
                 GlStateManager.rotate(90, 0.0f, 0.0f, 1.0f);
+            }
+            if (entity != null && entity.isSneaking()) {
+                GlStateManager.rotate(30, 1.0f, 0.0f, 0.0f);
+                GlStateManager.rotate(-15, 0.0f, 1.0f, 0.0f);
+                GlStateManager.translate(0.0f, 0.0f, 0.15f);
             }
             this.shape10.render(f5);
             this.shape6.render(f5);

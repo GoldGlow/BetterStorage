@@ -41,9 +41,8 @@ public class GuiCostume extends GuiScreen {
     boolean doRotate = true;
     int rotation = 50;
 
-    //6 rows
     int scroll;
-    int currentCategory;
+    int currentCategory = -1;
 
     public GuiCostume(EntityPlayer player) {
         this.player = player;
@@ -61,6 +60,8 @@ public class GuiCostume extends GuiScreen {
         mc.renderEngine.bindTexture(texture);
         drawTexturedModalRect(guiLeft, guiTop, 0,0, xSize, ySize);
         drawEntityOnScreen(guiLeft+40, (this.height/2)-5+this.scale, this.scale, player);
+        if(currentCategory>=0)
+            drawCenteredString(fontRendererObj, "Category: "+((GuiPokenavButton)this.buttonList.get(currentCategory+1)).label, (guiLeft+(xSize/2))+40, guiTop+20, 0xffffff);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -70,32 +71,48 @@ public class GuiCostume extends GuiScreen {
                 mc.displayGuiScreen(new GuiPokenavMain(this.player, true));
                 break;
             case 1:
+                this.scroll=0;
                 addButtons(0);
                 currentCategory = 0;
                 break;
             case 2:
+                this.scroll=0;
                 addButtons(1);
                 currentCategory = 1;
                 break;
             case 3:
+                this.scroll=0;
                 addButtons(2);
                 currentCategory = 2;
                 break;
             case 4:
+                this.scroll=0;
                 addButtons(3);
                 currentCategory = 3;
                 break;
             case 5:
+                this.scroll=0;
                 addButtons(4);
                 currentCategory = 4;
                 break;
             case 6:
                 BetterStorage.networkChannel.sendToServer(new PacketUpdateCostumeData(this.costumeData));
+                mc.displayGuiScreen(new GuiPokenavMain(this.player, true));
                 break;
             case 7:
                 if(currentCategory>=0) {
                     this.costumeData.removePiece(currentCategory);
                 }
+                break;
+            case 8:
+                if(scroll>0) {
+                    scroll-=1;
+                    addButtons(currentCategory);
+                }
+                break;
+            case 9:
+                scroll++;
+                addButtons(currentCategory);
                 break;
             default:
                 if(((GuiPokenavButton)button).costumePiece!=null) {
@@ -121,23 +138,33 @@ public class GuiCostume extends GuiScreen {
         button = new GuiPokenavButton(6, guiLeft+30, guiTop+170, EnumPokenavButtonType.Save);
         ((GuiPokenavButton)button).tooltipBelow = true;
         this.buttonList.add(button);
+        button = new GuiPokenavButton(8, guiLeft + xSize, guiTop+(this.ySize/2)-33, EnumPokenavButtonType.Up);
+        button.enabled = false;
+        this.buttonList.add(button);
+        button = new GuiPokenavButton(9, guiLeft + xSize, guiTop+(this.ySize/2)+11, EnumPokenavButtonType.Down);
+        button.enabled = false;
+        this.buttonList.add(button);
     }
 
     void addButtons(int category) {
         clearList();
-        GuiPokenavButton clearButton = new GuiPokenavButton(7, guiLeft + xSize, guiTop+(this.ySize/2)-11, EnumPokenavButtonType.Clear);
-        this.buttonList.add(clearButton);
+        GuiPokenavButton button = new GuiPokenavButton(7, guiLeft + xSize, guiTop+(this.ySize/2)-11, EnumPokenavButtonType.Clear);
+        this.buttonList.add(button);
         int i = 0;
         for (CostumePiece costumePiece : this.costumeData.getUnlockedPieces()) {
             if (costumePiece.getSlot() == category) {
-                if(i>29) {
-
-                } else {
-                    GuiPokenavButton newButton = new GuiPokenavButton(8 + i, (guiLeft + 79) + ((i % 5) * 24), (guiTop + 30) + ((i / 5) * 24), costumePiece);
+                if(i>=30*scroll && i<30*(scroll+1)) {
+                    GuiPokenavButton newButton = new GuiPokenavButton(10 + (i-(30*scroll)), (guiLeft + 79) + ((i % 5) * 24), (guiTop + 30) + (((i-(30*scroll)) / 5) * 24), costumePiece);
                     this.buttonList.add(newButton);
                 }
                 i++;
             }
+        }
+        if(i>30 && scroll>0) {
+            this.buttonList.get(7).enabled = true;
+        }
+        if(i>30*(scroll+1)) {
+            this.buttonList.get(8).enabled = true;
         }
     }
 
