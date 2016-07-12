@@ -17,7 +17,6 @@ public class GuiHandler implements IGuiHandler {
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch(ID) {
             case Constants.guiBackpackID:
-                System.out.println("Received Server Side");
                 IInventory inventory = ItemBackpack.getBackpackItems(player, player);
                 inventory = new InventoryBackpackEquipped(player, player, inventory);
 
@@ -31,7 +30,6 @@ public class GuiHandler implements IGuiHandler {
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch(ID) {
             case Constants.guiBackpackID:
-                System.out.println("Received Client Side");
                 IInventory inventory = ItemBackpack.getBackpackItems(player, player);
                 inventory = new InventoryBackpackEquipped(player, player, inventory);
                 return new GuiBetterStorage(player, x, y, inventory);

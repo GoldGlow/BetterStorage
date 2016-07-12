@@ -24,6 +24,14 @@ public class Costumes {
         costumeRegistry.add(thomas = new CostumePiece("Thomas", 0));
     }
 
+    public static List<String> getCostumeNames() {
+        ArrayList s = new ArrayList();
+        for(CostumePiece piece : costumeRegistry) {
+            s.add(piece.getTextureName());
+        }
+        return s;
+    }
+
     @SideOnly(Side.CLIENT)
     public static void registerModels() {
         duskullMask.setModel(new ModelDuskullMask());
