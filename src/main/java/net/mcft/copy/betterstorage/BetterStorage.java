@@ -1,7 +1,9 @@
 package net.mcft.copy.betterstorage;
 
 import net.mcft.copy.betterstorage.addon.Addon;
+import net.mcft.copy.betterstorage.client.gui.goldenglow.GuiGGOverlay;
 import net.mcft.copy.betterstorage.client.handler.MusicHandler;
+import net.mcft.copy.betterstorage.commands.CommandGGRedeem;
 import net.mcft.copy.betterstorage.config.Config;
 import net.mcft.copy.betterstorage.config.GlobalConfig;
 import net.mcft.copy.betterstorage.content.BetterStorageEntities;
@@ -28,11 +30,13 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Constants.modId,
      name = Constants.modName,
+	 version = "1.8.9-0.11.0.123",
      dependencies = "required-after:Forge; after:Thaumcraft; after:NotEnoughItems; after:pixelmon;",
      guiFactory = "net.mcft.copy.betterstorage.client.gui.BetterStorageGuiFactory")
 public class BetterStorage {
@@ -56,6 +60,8 @@ public class BetterStorage {
 	public static CostumeHandler costumeHandler;
 	public static EventHandler eventHandler;
 
+	public static GuiGGOverlay ggOverlay;
+
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		
@@ -72,6 +78,8 @@ public class BetterStorage {
 
 		eventHandler = new EventHandler();
 		costumeHandler = new CostumeHandler();
+
+		ggOverlay = new GuiGGOverlay();
 	}
 	
 	@Mod.EventHandler
@@ -96,11 +104,8 @@ public class BetterStorage {
 		Addon.postInitializeAll();
 	}
 
-	public static void test(String song, EntityPlayer player) {
-		networkChannel.sendTo(new PacketPlayMusic(song), player);
-	}
-
-	public static void testStop(EntityPlayer player) {
-		networkChannel.sendTo(new PacketStopMusic(), player);
+	@Mod.EventHandler
+	public void serverStarting(FMLServerStartingEvent event) {
+		event.registerServerCommand(new CommandGGRedeem());
 	}
 }

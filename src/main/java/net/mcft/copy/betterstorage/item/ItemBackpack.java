@@ -173,10 +173,7 @@ public class ItemBackpack extends ItemArmorBetterStorage implements ISpecialArmo
 				LanguageUtils.translateTooltip(list, "backpack.used");
 			// If the backpack can't be removed from its slot (only placed down),
 			// tell the player why, like "Contains items" or "Bound backpack".
-			} else if (enableHelpTooltips)
-				LanguageUtils.translateTooltip(list,
-						(info != null) ? "backpack.unequipHint.extended" : "backpack.unequipHint",
-						(info != null) ? new String[]{ "%INFO%", info } : new String[0]);
+			}
 			else if (info != null) list.add(info);
 			// If the backpack can be opened by pressing a key, let the player know.
 			if (BetterStorage.globalConfig.getBoolean(GlobalConfig.enableBackpackOpen)) {

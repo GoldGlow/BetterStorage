@@ -35,6 +35,8 @@ public class ChannelHandler extends SimpleNetworkWrapper {
 		register(Side.SERVER, PacketRequestCostumeData.class);
 		register(Side.CLIENT, PacketSendCostumeData.class);
 		register(Side.SERVER, PacketUpdateCostumeData.class);
+		register(Side.CLIENT, PacketUnlock.class);
+		register(Side.CLIENT, PacketRouteNotification.class);
 	}
 	
 	public <T extends IMessage & IMessageHandler<T, IMessage>> void register(Side receivingSide, Class<T> messageClass) {
